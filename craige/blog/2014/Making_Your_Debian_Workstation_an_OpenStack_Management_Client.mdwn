@@ -1,0 +1,69 @@
+---
+title: Making Your Debian Workstation an OpenStack Management Client
+author: Craige McWhirter
+date: 2014-07-04
+---
+
+#### Assumptions:
+* You've already `created` your OpenStack tenant.
+* You've already created your OpenStack user.
+* You've already given that user permissions to that tenant.
+
+#### Pre-Requisites for Debian 7.x workstations only:
+If you're running testing or unstable, you have the lastest packages so move onto the next section. However if you're running [Debian 7.x (wheezy)](https://www.debian.org/releases/wheezy/) you will need to first add these repositories:
+
+```bash
+# echo "deb http://archive.gplhost.com/debian icehouse main" >>/etc/apt/sources.list
+# echo "deb http://archive.gplhost.com/debian icehouse-backports main" >>/etc/apt/sources.list
+```
+
+and update your repository database before installing the key:
+
+    $ sudo apt-get update && sudo apt-get install gplhost-archive-keyring
+
+#### Install the Clients!:
+Update your repository database then install the meta package openstack-clients:
+
+    $ sudo apt-get update && sudo apt-get install openstack-clients
+    The following NEW packages will be installed:
+      ieee-data{a} openstack-clients python-babel{a} python-babel-localedata{a}
+      python-cinderclient{a} python-cliff{a} python-cliff-doc{a} python-cmd2{a}
+      python-colorama{a} python-crypto{a} python-d2to1{a} python-distlib{a}
+      python-eventlet{a} python-glanceclient{a} python-greenlet{a}
+      python-heatclient{a} python-html5lib{a} python-httplib2{a} python-iso8601{a}
+      python-json-patch{a} python-json-pointer{a} python-jsonpatch{a}
+      python-jsonschema{a} python-keyring{a} python-keystoneclient{a}
+      python-mock{a} python-netaddr{a} python-neutronclient{a} python-novaclient{a}
+      python-oslo.config{a} python-pbr{a} python-pip{a} python-prettytable{a}
+      python-pyparsing{a} python-secretstorage{a} python-setuptools{a}
+      python-simplejson{a} python-stevedore{a} python-swiftclient{a} python-tz{a}
+      python-warlock{a} python-wheel{a} python-yaml{a}
+    0 packages upgraded, 43 newly installed, 0 to remove and 3 not upgraded.
+    Need to get 5,780 kB of archives. After unpacking 30.8 MB will be used.
+    Do you want to continue? [Y/n/?] y
+
+You'll notice that it installs a whole world of Python. Python was cool in 2005.
+
+#### Configure Your Clients:
+
+To configure your OpenStack clients you merely need to set four environment variables:
+
+* `OS_USERNAME` - this contains your OpenStack username.
+* `OS_PASSWORD` - this contains your OpenStack password.
+* `OS_TENANT_NAME` - the name of the OpenStack tenant you wish to connect to.
+* `OS_AUTH_URL` - the URL to your OpenStack authentication service.
+
+The easiest way to do this is to put them in a file to be sourced when needed. Your `TENANT_NAME-openrc.sh` may look like this:
+
+    export OS_USERNAME=your_username
+    export OS_PASSWORD=your_password
+    export OS_TENANT_NAME=your_tenant_name
+    export OS_AUTH_URL=http://keystone.your.openstack.domain:35357/v2.0
+
+When you need to use your OpenStack clients, you can source the credentials as follows::
+
+    $ source TENANT_NAME-openrc.sh
+
+This also allows you to perform operations as different users or on different tenants by sourcing different openrc files.
+
+[[!tag Linux Debian OpenStack ]]

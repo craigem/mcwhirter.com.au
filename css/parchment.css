@@ -18,7 +18,7 @@ div#header {
     padding: 12px 0px 12px 0px;
 }
 
-div#logo {
+div#banner {
     background-image: url('/images/PANO_20130111_121908.jpg');
     min-height: 153px;
     border-radius:10px;
@@ -38,7 +38,9 @@ div#logo a {
 }
 
 div#header #navigation {
-    text-align: right;
+    text-align: left;
+    padding-top: 20px;
+    padding-bottom: 25px;
 }
 
 div#header #navigation a {

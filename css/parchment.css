@@ -16,8 +16,11 @@ body {
 div#header {
     margin-bottom: 30px;
     padding: 12px 0px 12px 0px;
+}
+
+div#logo {
     background-image: url('/images/PANO_20130111_121908.jpg');
-    min-height: 123px;
+    min-height: 153px;
     border-radius:10px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
@@ -25,7 +28,6 @@ div#header {
     -webkit-box-shadow:3px 3px 5px 0px #000000;
     box-shadow:3px 3px 5px 0px #000000;
 }
-
 div#logo a {
     color: black;
     float: left;

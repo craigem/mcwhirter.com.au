@@ -2,6 +2,7 @@
 title: Making Your Debian Workstation an OpenStack Management Client
 author: Craige McWhirter
 date: 2014-07-04
+tags: Linux, Debian, OpenStack
 ---
 
 #### Assumptions:
@@ -65,5 +66,3 @@ When you need to use your OpenStack clients, you can source the credentials as f
     $ source TENANT_NAME-openrc.sh
 
 This also allows you to perform operations as different users or on different tenants by sourcing different openrc files.
-
-[[!tag Linux Debian OpenStack ]]

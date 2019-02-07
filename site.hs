@@ -16,7 +16,7 @@ myFeedConfiguration = FeedConfiguration
 
 main :: IO ()
 main = hakyll $ do
-    match ("images/*" .||. "*icon*") $ do
+    match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
 
@@ -85,7 +85,7 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
 
-    match "templates/*" $ compile templateCompiler
+    match "templates/*" $ compile templateBodyCompiler
 
 
 --------------------------------------------------------------------------------
